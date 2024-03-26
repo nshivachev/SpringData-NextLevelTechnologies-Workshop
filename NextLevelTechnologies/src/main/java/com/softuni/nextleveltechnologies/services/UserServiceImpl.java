@@ -1,6 +1,6 @@
 package com.softuni.nextleveltechnologies.services;
 
-import com.softuni.nextleveltechnologies.models.dtos.UserLoginDto;
+import com.softuni.nextleveltechnologies.models.dtos.users.UserLoginDto;
 import com.softuni.nextleveltechnologies.models.entities.User;
 import com.softuni.nextleveltechnologies.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

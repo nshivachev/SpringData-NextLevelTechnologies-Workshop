@@ -1,4 +1,4 @@
-package com.softuni.nextleveltechnologies.models.dtos;
+package com.softuni.nextleveltechnologies.models.dtos.users;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
