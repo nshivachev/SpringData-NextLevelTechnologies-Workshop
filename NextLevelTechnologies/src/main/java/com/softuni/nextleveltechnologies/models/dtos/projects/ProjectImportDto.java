@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @XmlRootElement(name = "project")
 @XmlAccessorType(XmlAccessType.FIELD)
-    @NotNull
+@NotNull
 public class ProjectImportDto {
     @XmlElement
     private String name;
@@ -40,6 +40,7 @@ public class ProjectImportDto {
     @XmlElement
     private BigDecimal payment;
 
+    @NotNull
     @XmlElement
     private CompanyImportDto company;
 }
