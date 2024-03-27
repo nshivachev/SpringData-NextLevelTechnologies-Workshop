@@ -9,5 +9,7 @@ public interface ProjectService {
 
     String importProjects() throws JAXBException, FileNotFoundException;
 
+    String exportProjects(boolean isFinished);
+
     boolean areImported();
 }

@@ -1,5 +1,6 @@
 package com.softuni.nextleveltechnologies.services;
 
+import com.softuni.nextleveltechnologies.models.dtos.employees.EmployeeExportDto;
 import com.softuni.nextleveltechnologies.models.dtos.employees.EmployeeImportWrapperDto;
 import com.softuni.nextleveltechnologies.models.entities.Company;
 import com.softuni.nextleveltechnologies.models.entities.Employee;
@@ -18,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.softuni.nextleveltechnologies.utils.Constants.*;
 
@@ -75,6 +77,15 @@ public class EmployeeServiceImpl implements EmployeeService {
                 });
 
         return stringBuilder.toString().trim();
+    }
+
+    @Override
+    public String exportEmployees(int age) {
+        return employeeRepository.findAllByAgeAfter(age)
+                .stream()
+                .map(employee -> modelMapper.map(employee, EmployeeExportDto.class))
+                .map(EmployeeExportDto::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     @Override

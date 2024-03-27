@@ -9,5 +9,7 @@ public interface EmployeeService {
 
     String importEmployees() throws JAXBException, FileNotFoundException;
 
+    String exportEmployees(int age);
+
     boolean areImported();
 }

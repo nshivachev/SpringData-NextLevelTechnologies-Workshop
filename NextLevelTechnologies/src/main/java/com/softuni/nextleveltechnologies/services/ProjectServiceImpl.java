@@ -1,5 +1,6 @@
 package com.softuni.nextleveltechnologies.services;
 
+import com.softuni.nextleveltechnologies.models.dtos.projects.ProjectExportDto;
 import com.softuni.nextleveltechnologies.models.dtos.projects.ProjectImportWrapperDto;
 import com.softuni.nextleveltechnologies.models.entities.Company;
 import com.softuni.nextleveltechnologies.models.entities.Project;
@@ -16,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.softuni.nextleveltechnologies.utils.Constants.*;
 
@@ -68,6 +70,15 @@ public class ProjectServiceImpl implements ProjectService {
                 });
 
         return stringBuilder.toString().trim();
+    }
+
+    @Override
+    public String exportProjects(boolean isFinished) {
+        return projectRepository.findAllByIsFinished(isFinished)
+                .stream()
+                .map(project -> modelMapper.map(project, ProjectExportDto.class))
+                .map(ProjectExportDto::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     @Override
