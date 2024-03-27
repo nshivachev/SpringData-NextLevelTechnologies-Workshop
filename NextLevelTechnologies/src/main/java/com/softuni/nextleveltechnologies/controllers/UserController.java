@@ -1,6 +1,7 @@
 package com.softuni.nextleveltechnologies.controllers;
 
 import com.softuni.nextleveltechnologies.models.dtos.users.UserLoginDto;
+import com.softuni.nextleveltechnologies.models.dtos.users.UserRegisterDto;
 import com.softuni.nextleveltechnologies.models.entities.User;
 import com.softuni.nextleveltechnologies.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,25 @@ public class UserController {
 
     @GetMapping("/users/register")
     public String register() {
+        return "user/register";
+    }
+
+    @PostMapping("/users/register")
+    public String doRegister(UserRegisterDto userRegisterDto) {
+        String userName = userRegisterDto.getUsername();
+        String password = userRegisterDto.getPassword();
+        String confirmPassword = userRegisterDto.getConfirmPassword();
+        String email = userRegisterDto.getEmail();
+
+        if (!userName.isBlank()
+                && !password.isBlank()
+                && !email.isBlank()
+                && password.equals(confirmPassword)
+                && userService.register(userRegisterDto).isEmpty()) {
+
+            return "redirect:/";
+        }
+
         return "user/register";
     }
 }
