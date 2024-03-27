@@ -52,7 +52,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         final StringBuilder stringBuilder = new StringBuilder();
 
-        List<Company> companies = xmlParser.fromFile(COMPANIES_IMPORT_XML, CompanyImportWrapperDto.class).getCompanies()
+        final List<Company> companies = xmlParser.fromFile(COMPANIES_IMPORT_XML, CompanyImportWrapperDto.class).getCompanies()
                 .stream()
                 .filter(companyDto -> {
                     final boolean isValid = validationUtils.isValid(companyDto)

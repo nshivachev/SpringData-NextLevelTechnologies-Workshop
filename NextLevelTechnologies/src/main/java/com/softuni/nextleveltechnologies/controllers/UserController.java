@@ -59,4 +59,9 @@ public class UserController {
 
         return "user/register";
     }
+
+    @GetMapping("logout")
+    public String logout() {
+        return "redirect:/";
+    }
 }
